@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 29, 2022 at 06:21 AM
+-- Generation Time: Oct 01, 2022 at 07:37 AM
 -- Server version: 10.4.20-MariaDB-log
 -- PHP Version: 8.0.9
 
@@ -32,7 +32,7 @@ CREATE TABLE `kegiatan` (
   `nim` varchar(20) NOT NULL,
   `jabatan` varchar(50) NOT NULL,
   `nilai` double NOT NULL,
-  `nama_kegiatan` text NOT NULL,
+  `nama` text NOT NULL,
   `jenis` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -40,17 +40,17 @@ CREATE TABLE `kegiatan` (
 -- Dumping data for table `kegiatan`
 --
 
-INSERT INTO `kegiatan` (`id`, `nim`, `jabatan`, `nilai`, `nama_kegiatan`, `jenis`) VALUES
-(1, '215160100111001', 'Juara III', 1.2, 'Solo Medical Cup 2018', 'LAIN-LAIN'),
-(2, '215160100111001', 'Anggota', 0.17, 'Klub Basket 2018', 'LAIN-LAIN'),
-(3, '215160100111001', 'Pemateri', 0.09, 'Sekolah Ilmiah 2018', 'PENALARAN'),
+INSERT INTO `kegiatan` (`id`, `nim`, `jabatan`, `nilai`, `nama`, `jenis`) VALUES
+(1, '215160100111001', 'Juara III', 1.29, 'Solo Medical Cup 2018', 'ORGANISASI'),
+(2, '215160100111001', 'Anggota', 1.17, 'Klub Basket 2018', 'PENMAS'),
+(3, '215160100111001', 'Pemateri', 1.09, 'Sekolah Ilmiah 2018', 'PENALARAN'),
 (4, '215160100111002', 'Suporter', 0.14, 'P3MU 2018', 'PENALARAN'),
 (5, '215160100111003', 'Peserta', 0.12, 'SEMUSIM 2018', 'PENALARAN'),
 (6, '215160100111002', 'SC', 0.25, 'AIJECT 2018', 'ORGANISASI'),
 (7, '215160100111004', 'SC', 0.51, 'MUNJAM 2018', 'ORGANISASI'),
 (8, '215160100111003', 'Juara III', 1.2, 'Solo Medical Cup 2018', 'LAIN-LAIN'),
 (9, '215160100111004', 'SC', 0.52, 'MUNJAM 2018', 'ORGANISASI'),
-(10, '215160100111005', 'Anggota', 0.17, 'Klub Basket 2018', 'LAIN-LAIN');
+(10, '215160100111001', 'Anggota', 0.17, 'Klub Basket 2018', 'LAIN-LAIN');
 
 -- --------------------------------------------------------
 
@@ -110,8 +110,7 @@ CREATE TABLE `probinmaba` (
 --
 
 INSERT INTO `probinmaba` (`id`, `nim`, `pk2maba`, `bkm`, `pkmmaba`, `penmas`) VALUES
-(1, '215160100111001', 0, 0, 0, 0),
-(2, '215160100111001', 0, 0, 0, 0),
+(1, '215160100111001', 1, 1, 1, 1),
 (3, '215160100111002', 1, 1, 1, 1),
 (4, '215160100111003', 0, 0, 0, 0),
 (5, '215160100111004', 1, 0, 1, 1);
