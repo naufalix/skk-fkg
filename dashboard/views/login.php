@@ -2,11 +2,14 @@
   <!-- Main content -->
   <div class="main-content">
     <!-- Header -->
-    <div class="header bg-gradient-dark py-7 py-lg-8 pt-lg-9">
+    <div class="header bg-gradient-dark py-7">
       <div class="container">
         <div class="header-body text-center mb-6">
           <div class="row justify-content-center">
-            <div class="col-xl-5 col-lg-6 col-md-8 px-5">
+            <div class="col-12 mb-4">
+              <img class="mx-auto" src="../assets/img/logo-ub.png" style="max-width: 100px;">
+            </div>
+            <div class="col-xl-5 col-lg-6 col-md-8 px-4">
               <h1 class="text-white">Satuan Kredit Kegiatan (SKK)</h1>
               <p class="text-white">Fakuktas Kedokteran Gigi Universitas Brawijaya</p>
             </div>

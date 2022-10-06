@@ -3,8 +3,8 @@
       <!-- Brand -->
       <div class="sidenav-header  align-items-center">
         <a class="navbar-brand" href="javascript:void(0)">
-          <!-- <img src="../assets/img/logo-ub.png" class="navbar-brand-img" alt="logo" style="max-height: 50px;"> -->
-          <strong>SKK FKG</strong>
+          <img src="../assets/img/logo-ub.png" class="navbar-brand-img" alt="logo" style="max-height: 30px;">
+          <strong class="align-middle">SKK FKG</strong>
         </a>
       </div>
       <div class="navbar-inner">
