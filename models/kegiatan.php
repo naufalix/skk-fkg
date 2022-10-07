@@ -7,16 +7,18 @@ class kegiatan{
         $this->db = $this->db->get_koneksi();
     }
  
-    // public function tambah($nama,$username,$password,$role)
-    // {
-    //     $insert = $this->db->prepare('INSERT INTO users (nama,username,password,role) VALUES (?,?,?,?)');
-    //     $insert->bindParam(1, $nama);
-    //     $insert->bindParam(2, $username);
-    //     $insert->bindParam(3, $password);
-    //     $insert->bindParam(4, $role);
-    //     $insert->execute();
-    //     return $insert;
-    // }
+    public function tambah($nim,$jabatan,$nilai,$nama,$jenis,$status)
+    {
+        $insert = $this->db->prepare('INSERT INTO kegiatan (nim,jabatan,nilai,nama,jenis,status) VALUES (?,?,?,?,?,?)');
+        $insert->bindParam(1, $nim);
+        $insert->bindParam(2, $jabatan);
+        $insert->bindParam(3, $nilai);
+        $insert->bindParam(4, $nama);
+        $insert->bindParam(5, $jenis);
+        $insert->bindParam(6, $status);
+        $insert->execute();
+        return $insert;
+    }
  
     // public function tampil()
     // {
