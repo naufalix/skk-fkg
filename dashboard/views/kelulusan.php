@@ -32,15 +32,17 @@
                       <th>No</th>
                       <th>Jenis SKK</th>
                       <th>Nilai</th>
-                      <th>Status</th>
+                      <th style="width: 100px">Status</th>
                     </tr>
                   </thead>
                   <tbody>
                     <?php
                       // SKK PROBINMABA
-                      $tp=0.25*($data_prob['pk2maba']+$data_prob['bkm']+$data_prob['pkmmaba']+$data_prob['penmas']);
-                      if ($tp == 1) {$sp="LULUS"; $bp="success";}
-                      else { $sp="TIDAK LULUS"; $bp="danger";}
+                      if ($data_prob) {
+                        $tp=0.25*($data_prob['pk2maba']+$data_prob['bkm']+$data_prob['pkmmaba']+$data_prob['penmas']);
+                        if ($tp == 1) {$sp="LULUS"; $bp="success";}
+                        else { $sp="TIDAK LULUS"; $bp="danger";}
+                      } else { $sp="TIDAK LULUS"; $bp="danger"; $tp=0;}
                     ?>
                     <tr>
                       <td style="width: 20px">1</td>
@@ -53,23 +55,25 @@
 
                     <?php
                       // SKK KEGIATAN
-                      $tk=0; 
-                      $tk1=0;
-                      $tk2=0;
-                      $tk3=0;
-                      foreach($data_kegiatan as $dk) {
-                        $jenis   = $dk['jenis'];
-                        $nilai   = $dk['nilai'];
-                        if ($jenis=="LAIN-LAIN"){continue;}
+                      if ($data_kegiatan) {
+                        $tk=0; 
+                        $tk1=0;
+                        $tk2=0;
+                        $tk3=0;
+                        foreach($data_kegiatan as $dk) {
+                          $jenis   = $dk['jenis'];
+                          $nilai   = $dk['nilai'];
+                          if ($jenis=="LAIN-LAIN"){continue;}
 
-                        $tk  += $nilai;
-                        if ($jenis=="ORGANISASI"){$tk1 += $nilai;}
-                        if ($jenis=="PENALARAN") {$tk2 += $nilai;}
-                        if ($jenis=="PENMAS")    {$tk3 += $nilai;}
+                          $tk  += $nilai;
+                          if ($jenis=="ORGANISASI"){$tk1 += $nilai;}
+                          if ($jenis=="PENALARAN") {$tk2 += $nilai;}
+                          if ($jenis=="PENMAS")    {$tk3 += $nilai;}
 
-                        if ($tk>=4&&$tk1>=0.5&&$tk2>=0.5&&$tk3>=0.5) {$sk="LULUS"; $bk="success";}
-                        else { $sk="TIDAK LULUS"; $bk="danger";}
-                      }
+                          if ($tk>=4&&$tk1>=0.5&&$tk2>=0.5&&$tk3>=0.5) {$sk="LULUS"; $bk="success";}
+                          else { $sk="TIDAK LULUS"; $bk="danger";}
+                        }
+                      } else { $sk="TIDAK LULUS"; $bk="danger"; $tk=0; }
                     ?>
                     <tr>
                       <td style="width: 20px">2</td>

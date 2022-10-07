@@ -8,6 +8,9 @@
             <div class="col-lg-6 col-7">
               <h6 class="h2 text-white d-inline-block mb-0">SKK Lain-lain</h6>
             </div>
+            <a href="#" class="btn btn-white ml-auto mr-3" data-toggle="modal" data-target="#tambah">
+              <span><i class="fa fa-plus-circle"></i><span> Tambah</span>
+            </a>
           </div>
         </div>
       </div>
@@ -45,9 +48,14 @@
                         $nama    = $dk['nama'];
                         $jenis   = $dk['jenis'];
                         $nilai   = $dk['nilai'];
+                        $status  = $dk['status'];
                         if ($jenis!="LAIN-LAIN"){continue;}
 
-                        $total  += $nilai;
+                        if($status){
+                          $total  += $nilai;
+                        } else {
+                          $nilai   = 'Menunggu diverifikasi';
+                        }
                     ?>
                     <tr>
                       <td style="width: 20px"><?= $no ?></td>
@@ -72,6 +80,49 @@
               </div>
             </div>
 
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="tambah" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Tambah Kegiatan</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form class="forms-sample" method="post">
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-12">
+                    <label for="nama">Nama Kegiatan</label>
+                    <input type="text" class="form-control"name="nama" placeholder="Nama kegiatan..." required>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-6">
+                    <label for="Jabatan">Jabatan</label>
+                    <input type="text" class="form-control" name="jabatan" placeholder="Jabatan..." required>
+                  </div>
+                  <div class="col-6">
+                    <label for="jenis">Jenis</label>
+                    <select class="form-control" name="jenis" disabled>
+                      <option value="LAIN-LAIN">Lain-lain</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-default" name="submit-tambah" ><i class="fa fa-check"></i><span> Submit</span></button>
+              </div>
+            </form>
           </div>
         </div>
       </div>

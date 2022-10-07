@@ -36,15 +36,16 @@
                   </thead>
                   <tbody>
                     <?php
-                      $no=1;
-                      if($data_prob['pk2maba']==1)  {$s1="LULUS"; $b1="success";} else {$s1="TIDAK LULUS"; $b1="danger";}
-                      if($data_prob['bkm']==1)      {$s2="LULUS"; $b2="success";} else {$s2="TIDAK LULUS"; $b2="danger";}
-                      if($data_prob['pkmmaba']==1)  {$s3="LULUS"; $b3="success";} else {$s3="TIDAK LULUS"; $b3="danger";}
-                      if($data_prob['penmas']==1)   {$s4="LULUS"; $b4="success";} else {$s4="TIDAK LULUS"; $b4="danger";}
-                      $jenis = ["","PK2MABA","BKM","PKMMABA","PENMAS"];
-                      for ($i=1; $i<=4; $i++){
-                        $s = "s".$i;
-                        $b = "b".$i;
+                      if ($data_prob) {
+                        $no=1;
+                        if($data_prob['pk2maba']==1)  {$s1="LULUS"; $b1="success";} else {$s1="TIDAK LULUS"; $b1="danger";}
+                        if($data_prob['bkm']==1)      {$s2="LULUS"; $b2="success";} else {$s2="TIDAK LULUS"; $b2="danger";}
+                        if($data_prob['pkmmaba']==1)  {$s3="LULUS"; $b3="success";} else {$s3="TIDAK LULUS"; $b3="danger";}
+                        if($data_prob['penmas']==1)   {$s4="LULUS"; $b4="success";} else {$s4="TIDAK LULUS"; $b4="danger";}
+                        $jenis = ["","PK2MABA","BKM","PKMMABA","PENMAS"];
+                        for ($i=1; $i<=4; $i++){
+                          $s = "s".$i;
+                          $b = "b".$i;
                     ?>
                     <tr>
                       <td style="width: 20px"><?= $no ?></td>
@@ -53,11 +54,17 @@
                         <span class="badge bg-gradient-<?= $$b ?> text-white" style="font-size: 12px;"><?= $$s ?></span>
                       </td>
                     </tr>
-                    <?php $no++; } ?>
+                    <?php 
+                        $no++; } 
+                      } 
+                    ?>
                   </tbody>
                 </table>
               </div>
 
+              <?php 
+                if ($data_prob) { 
+              ?>
               <div class="d-flex">
                 <table class="mx-auto h2">
                   <?php 
@@ -77,6 +84,7 @@
                   </tr>
                 </table>
               </div>
+              <?php } ?>
             </div>
 
           </div>
