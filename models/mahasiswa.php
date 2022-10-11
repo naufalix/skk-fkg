@@ -20,7 +20,7 @@ class mahasiswa{
  
     public function tampil()
     {
-        $show = $this->db->prepare("SELECT * FROM users ORDER BY id");
+        $show = $this->db->prepare("SELECT * FROM mahasiswa ORDER BY id");
         $show->execute();
         $data = $show->fetchAll();
         return $data;

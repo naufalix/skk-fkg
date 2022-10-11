@@ -1,0 +1,6 @@
+options All -Indexes
+
+RewriteEngine On
+RewriteRule ^([-a-z]*)$ 			index.php?page=$1 [L]
+RewriteRule ^(tldetail)-([0-9]*)$ 	index.php?page=tldetail&id=$2 [L]
+RewriteRule ^(unsub)=([0-9]*)$ 		index.php?page=unsub&phone=$2 [L]

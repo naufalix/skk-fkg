@@ -7,16 +7,16 @@ class user{
         $this->db = $this->db->get_koneksi();
     }
  
-    public function tambah($nama,$username,$password,$role)
-    {
-        $insert = $this->db->prepare('INSERT INTO users (nama,username,password,role) VALUES (?,?,?,?)');
-        $insert->bindParam(1, $nama);
-        $insert->bindParam(2, $username);
-        $insert->bindParam(3, $password);
-        $insert->bindParam(4, $role);
-        $insert->execute();
-        return $insert;
-    }
+    // public function tambah($nama,$username,$password,$role)
+    // {
+    //     $insert = $this->db->prepare('INSERT INTO users (nama,username,password,role) VALUES (?,?,?,?)');
+    //     $insert->bindParam(1, $nama);
+    //     $insert->bindParam(2, $username);
+    //     $insert->bindParam(3, $password);
+    //     $insert->bindParam(4, $role);
+    //     $insert->execute();
+    //     return $insert;
+    // }
  
     public function tampil()
     {
@@ -58,13 +58,13 @@ class user{
         return $update;
     }
 
-    public function foto($id_user,$foto){
-        $update = $this->db->prepare('UPDATE users SET foto=? WHERE `id`=?');
-        $update->bindParam(1, $foto);
-        $update->bindParam(2, $id_user);
-        $update->execute();
-        return $update;
-    }
+    // public function foto($id_user,$foto){
+    //     $update = $this->db->prepare('UPDATE users SET foto=? WHERE `id`=?');
+    //     $update->bindParam(1, $foto);
+    //     $update->bindParam(2, $id_user);
+    //     $update->execute();
+    //     return $update;
+    // }
 
     public function password($id_user,$password){
         $update = $this->db->prepare('UPDATE users SET password=? WHERE `id`=?');

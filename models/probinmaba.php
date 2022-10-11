@@ -7,20 +7,21 @@ class probinmaba{
         $this->db = $this->db->get_koneksi();
     }
  
-    public function tambah($nama,$username,$password,$role)
+    public function tambah($nim,$p1,$b1,$p2,$p3)
     {
-        $insert = $this->db->prepare('INSERT INTO users (nama,username,password,role) VALUES (?,?,?,?)');
-        $insert->bindParam(1, $nama);
-        $insert->bindParam(2, $username);
-        $insert->bindParam(3, $password);
-        $insert->bindParam(4, $role);
+        $insert = $this->db->prepare('INSERT INTO probinmaba (nim,pk2maba,bkm,pkmmaba,penmas) VALUES (?,?,?,?,?)');
+        $insert->bindParam(1, $nim);
+        $insert->bindParam(2, $p1);
+        $insert->bindParam(3, $b1);
+        $insert->bindParam(4, $p2);
+        $insert->bindParam(5, $p3);
         $insert->execute();
         return $insert;
     }
  
     public function tampil()
     {
-        $show = $this->db->prepare("SELECT * FROM users ORDER BY id");
+        $show = $this->db->prepare("SELECT * FROM probinmaba ORDER BY nim");
         $show->execute();
         $data = $show->fetchAll();
         return $data;

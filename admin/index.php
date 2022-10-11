@@ -6,22 +6,22 @@
   if (!empty($_GET["page"])) {
     $page = $_GET["page"];
     if  ($page=="logout") {header("Location:logout");}
-    $user_page = array(
-      "home","kegiatan","kelulusan","lain-lain","login","probinmaba"
+    $admin_page = array(
+      "home","kegiatan","login","probinmaba","user"
     );
-    if  (in_array($page, $user_page)) { $page=$page; }
+    if  (in_array($page, $admin_page)) { $page=$page; }
     else { $page="404"; }
   }
   else{ $page="home"; } 
   
   if ($page=="login") {
-    include("../config/controller.php"); 
-    include("../config/views.php");
+    include("../config/admin/controller.php"); 
+    include("../config/admin/views.php");
   }
   else {
-    require('../config/session-mhs.php');
-    include("../config/controller.php"); 
-    include("../config/views.php");  
+    require('../config/admin/session.php');
+    include("../config/admin/controller.php"); 
+    include("../config/admin/views.php");  
   }
    
   //mysqli_close($conn);
