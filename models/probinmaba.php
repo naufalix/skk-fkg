@@ -34,51 +34,28 @@ class probinmaba{
         return $show->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function cek_username($username){
-        $show = $this->db->prepare("SELECT * FROM users WHERE username = ?");
-        $show->bindParam(1, $username);
+    public function tampil_id($id){
+        $show = $this->db->prepare("SELECT * FROM probinmaba WHERE id = ?");
+        $show->bindParam(1, $id);
         $show->execute();
-        return $show->fetch();
+        return $show->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function login($username, $password){
-        $show = $this->db->prepare("SELECT * FROM users WHERE username = ? AND password = ?");
-        $show->bindParam(1, $username);
-        $show->bindParam(2, $password);
-        $show->execute();
-        return $show->fetch();
-    }
- 
-    public function ubah($id_user,$nama,$username,$role){
-        $update = $this->db->prepare('UPDATE users SET nama=?, username=?, role=? WHERE `id`=?');
-        $update->bindParam(1, $nama);
-        $update->bindParam(2, $username);
-        $update->bindParam(3, $role);
-        $update->bindParam(4, $id_user);
+    public function ubah($id,$p1,$b1,$p2,$p3){
+        $update = $this->db->prepare('UPDATE probinmaba SET pk2maba=?, bkm=?, pkmmaba=?, penmas=? WHERE `id`=?');
+        $update->bindParam(1, $p1);
+        $update->bindParam(2, $b1);
+        $update->bindParam(3, $p2);
+        $update->bindParam(4, $p3);
+        $update->bindParam(5, $id);
         $update->execute();
         return $update;
     }
 
-    public function foto($id_user,$foto){
-        $update = $this->db->prepare('UPDATE users SET foto=? WHERE `id`=?');
-        $update->bindParam(1, $foto);
-        $update->bindParam(2, $id_user);
-        $update->execute();
-        return $update;
-    }
-
-    public function password($id_user,$password){
-        $update = $this->db->prepare('UPDATE users SET password=? WHERE `id`=?');
-        $update->bindParam(1, $password);
-        $update->bindParam(2, $id_user);
-        $update->execute();
-        return $update;
-    }
- 
-    public function hapus($id_user)
+    public function hapus($id)
     {
-        $delete = $this->db->prepare("DELETE FROM users WHERE `id`=?"); 
-        $delete->bindParam(1, $id_user); 
+        $delete = $this->db->prepare("DELETE FROM probinmaba WHERE `id`=?"); 
+        $delete->bindParam(1, $id); 
         $delete->execute();
         return $delete;
     }

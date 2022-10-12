@@ -6,7 +6,7 @@
       	<div class="header-body">
           <div class="row align-items-center py-4">
             <div class="col-lg-6 col-7">
-              <h6 class="h2 text-white d-inline-block mb-0">DATA Probinmaba</h6>
+              <h6 class="h2 text-white d-inline-block mb-0">Data SKK Kegiatan</h6>
             </div>
             <a href="#" class="btn btn-white ml-auto mr-3" data-toggle="modal" data-target="#tambah">
               <span><i class="fa fa-plus-circle"></i><span> Tambah</span>
@@ -22,7 +22,7 @@
           <div class="card">
             <div class="card-header bg-transparent" style="border-bottom: 0px">
               <div class="align-items-center">
-                <h5 class="h3 mb-0 text-sm text-justify">SKK PROBINMABA merupakan nilai SKK yang diperoleh oleh setiap mahasiswa FK UB yang telah mengikuti, menyelesaikan dan LULUS pada semua rangkaian kegiatan PROBINMABA (meliputi PK2MABA, BKM, PKM MABA dan PENMAS) sebagai peserta dan akan memperoleh nilai total sejumlah 1,00.</h5>
+                <h5 class="h3 mb-0 text-sm text-justify">SKK Kegiatan adalah SKK yang diberikan kepada mahasiswa yang ikut berperan aktif dalam kegiatan kemahasiswaan yang berada di lingkungan FKUB maupun ekstra FK UB dengan persyaratan tertentu yang lebih khusus, baik itu dari tingkat jurusan hingga tingkat internasional. Bidang SKK Kegiatan terbagi menjadi 3 kompetensi wajib, meliputi bidang : organisasi dan kepemimpinan, Penalaran serta Pengabdian Masyarakat.</h5>
               </div>
             </div>
 
@@ -34,33 +34,32 @@
                     <tr>
                       <th>NIM</th>
                       <th>Nama</th>
-                      <th>PK2MABA</th>
-                      <th>BKM</th>
-                      <th>PKM MABA</th>
-                      <th>PENMAS</th>
+                      <th>Nama Kegiatan</th>
+                      <th>Jabatan</th>
+                      <th>Jenis</th>
+                      <th>Status</th>
+                      <th>Nilai</th>
                       <th>Action</th>
                     </tr>
                   </thead>
                   <tbody>
                     <?php
-                    foreach($data_prob as $prob){
-                      $id = $prob['id'];
-                      $nim = $prob['nim'];
+                    foreach($data_kegiatan as $kg){
+                      $id = $kg['id'];
+                      $nim = $kg['nim'];
+                      if($kg['status'])  {$s1="VERIFIED"; $b1="success";} else {$s1="UNVERIFIED"; $b1="danger";}
                       $nama = $mahasiswa->tampil_nim($nim)['nama'];
-                      if($prob['pk2maba']==1)  {$s1="LULUS"; $b1="success";} else {$s1="TIDAK LULUS"; $b1="danger";}
-                      if($prob['bkm']==1)      {$s2="LULUS"; $b2="success";} else {$s2="TIDAK LULUS"; $b2="danger";}
-                      if($prob['pkmmaba']==1)  {$s3="LULUS"; $b3="success";} else {$s3="TIDAK LULUS"; $b3="danger";}
-                      if($prob['penmas']==1)   {$s4="LULUS"; $b4="success";} else {$s4="TIDAK LULUS"; $b4="danger";}
                     ?>
                     <tr>
                       <td><?= $nim ?></td>
-                      <td id="n<?= $id ?>"><?= $nama ?></td>
+                      <td><?= $nama ?></td>
+                      <td id="nm<?= $id ?>"><?= $kg['nama'] ?></td>
+                      <td id="jb<?= $id ?>"><?= $kg['jabatan'] ?></td>
+                      <td id="jn<?= $id ?>"><?= $kg['jenis'] ?></td>
                       <td style="width: 100px"><span class="badge bg-gradient-<?= $b1 ?> text-white" style="font-size: 12px;"><?= $s1 ?></span></td>
-                      <td style="width: 100px"><span class="badge bg-gradient-<?= $b2 ?> text-white" style="font-size: 12px;"><?= $s2 ?></span></td>
-                      <td style="width: 100px"><span class="badge bg-gradient-<?= $b3 ?> text-white" style="font-size: 12px;"><?= $s3 ?></span></td>
-                      <td style="width: 100px"><span class="badge bg-gradient-<?= $b4 ?> text-white" style="font-size: 12px;"><?= $s4 ?></span></td>
+                      <td id="ni<?= $id ?>"><?= $kg['nilai'] ?></td>
                       <td>
-                        <p class="d-none" id="<?= $id ?>"><?= $prob['pk2maba'].','.$prob['bkm'].','.$prob['pkmmaba'].','.$prob['penmas'] ?></p>
+                        <p id="st<?= $id ?>" class="d-none"><?= $kg['status'] ?></p>
                         <button type="button" class="btn btn-sm btn-default" title="Edit" data-toggle="modal" data-target="#edit" onclick="edit(<?= $id ?>)"><i class="fa fa-pen"></i></button>
                         <button type="button" class="btn btn-sm btn-danger" title="Hapus" data-toggle="modal" data-target="#hapus" onclick="hapus(<?= $id ?>)"><i class="fa fa-times"></i></button>
                       </td>
@@ -81,50 +80,50 @@
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Tambah Data Probinmaba</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Tambah SKK Kegiatan</h5>
           </div>
           <form method="post">
             <div class="modal-body">
               <div class="form-group">
                 <div class="row m-0">
-                  <div class="col-12 p-0 pr-2">
+                  <div class="col-5 p-0 pr-2">
                     <label for="nama" class="form-control-label">NIM</label>
                     <input type="number" class="form-control" placeholder="NIM" name="nim" required>
+                  </div>
+                  <div class="col-7 p-0 pr-2">
+                    <label for="nama" class="form-control-label">Nama Kegiatan</label>
+                    <input type="text" class="form-control" placeholder="Nama kegiatan..." name="nama" required>
                   </div>
                 </div>
               </div>
               <div class="form-group">
                 <div class="row m-0">
-                  <div class="col-6 p-0 pr-2">
-                    <label for="role" class="form-control-label">PK2MABA</label>
-                    <select class="form-control" name="pk2maba">
-                      <option value="1">LULUS</option>
-                      <option value="0">TIDAK LULUS</option>
-                    </select>
+                  <div class="col-5 p-0 pr-2">
+                    <label for="role" class="form-control-label">Jabatan</label>
+                    <input type="text" class="form-control" placeholder="Jabatan..." name="jabatan" required>
                   </div>
-                  <div class="col-6 p-0 pr-2">
-                    <label for="role" class="form-control-label">BKM</label>
-                    <select class="form-control" name="bkm">
-                      <option value="1">LULUS</option>
-                      <option value="0">TIDAK LULUS</option>
+                  <div class="col-7 p-0 pr-2">
+                    <label for="role" class="form-control-label">Jenis</label>
+                    <select class="form-control" name="jenis">
+                      <option value="ORGANISASI">Organisasi dan Kepemimpinan</option>
+                      <option value="PENALARAN">Penalaran</option>
+                      <option value="PENMAS">Pengabdian Masyarakat</option>
+                      <option value="LAIN-LAIN">Lain-lain</option>
                     </select>
                   </div>
                 </div>
               </div>
-              <div class="form-group m-0">
+              <div class="form-group">
                 <div class="row m-0">
-                  <div class="col-6 p-0 pr-2">
-                    <label for="role" class="form-control-label">PKMMABA</label>
-                    <select class="form-control" name="pkmmaba">
-                      <option value="1">LULUS</option>
-                      <option value="0">TIDAK LULUS</option>
-                    </select>
+                  <div class="col-5 p-0 pr-2">
+                    <label for="role" class="form-control-label">Nilai</label>
+                    <input type="text" class="form-control" placeholder="0.3..." name="nilai" required>
                   </div>
-                  <div class="col-6 p-0 pr-2">
-                    <label for="role" class="form-control-label">PENMAS</label>
-                    <select class="form-control" name="penmas">
-                      <option value="1">LULUS</option>
-                      <option value="0">TIDAK LULUS</option>
+                  <div class="col-7 p-0 pr-2">
+                    <label for="role" class="form-control-label">Status</label>
+                    <select class="form-control" name="status">
+                      <option value="1">Verified</option>
+                      <option value="0">Unverified</option>
                     </select>
                   </div>
                 </div>
@@ -142,43 +141,47 @@
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="et">Edit Data Probinmaba</h5>
+            <h5 class="modal-title" id="et">Edit data SKK Kegiatan</h5>
           </div>
           <form method="post">
+            <input type="hidden" id="eid" name="id">
             <div class="modal-body">
-              <input type="hidden" id="ei" name="id">
               <div class="form-group">
                 <div class="row m-0">
-                  <div class="col-6 p-0 pr-2">
-                    <label for="role" class="form-control-label">PK2MABA</label>
-                    <select class="form-control" id="ep1" name="pk2maba">
-                      <option value="1" class="text-success font-weight-bold">LULUS</option>
-                      <option value="0" class="text-danger font-weight-bold">TIDAK LULUS</option>
-                    </select>
+                  <div class="col-12 p-0 pr-2">
+                    <label for="nama" class="form-control-label">Nama Kegiatan</label>
+                    <input type="text" class="form-control" placeholder="Nama kegiatan..." id="enam" name="nama" required>
                   </div>
-                  <div class="col-6 p-0 pr-2">
-                    <label for="role" class="form-control-label">BKM</label>
-                    <select class="form-control" id="eb1" name="bkm">
-                      <option value="1" class="text-success font-weight-bold">LULUS</option>
-                      <option value="0" class="text-danger font-weight-bold">TIDAK LULUS</option>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="row m-0">
+                  <div class="col-5 p-0 pr-2">
+                    <label for="role" class="form-control-label">Jabatan</label>
+                    <input type="text" class="form-control" placeholder="Jabatan..." id="ejab" name="jabatan" required>
+                  </div>
+                  <div class="col-7 p-0 pr-2">
+                    <label for="role" class="form-control-label">Jenis</label>
+                    <select class="form-control" id="ejen" name="jenis">
+                      <option value="ORGANISASI">Organisasi dan Kepemimpinan</option>
+                      <option value="PENALARAN">Penalaran</option>
+                      <option value="PENMAS">Pengabdian Masyarakat</option>
+                      <option value="LAIN-LAIN">Lain-lain</option>
                     </select>
                   </div>
                 </div>
               </div>
-              <div class="form-group m-0">
+              <div class="form-group">
                 <div class="row m-0">
-                  <div class="col-6 p-0 pr-2">
-                    <label for="role" class="form-control-label">PKMMABA</label>
-                    <select class="form-control" id="ep2" name="pkmmaba">
-                      <option value="1" class="text-success font-weight-bold">LULUS</option>
-                      <option value="0" class="text-danger font-weight-bold">TIDAK LULUS</option>
-                    </select>
+                  <div class="col-5 p-0 pr-2">
+                    <label for="role" class="form-control-label">Nilai</label>
+                    <input type="text" class="form-control" placeholder="0.3..." id="enil" name="nilai" required>
                   </div>
-                  <div class="col-6 p-0 pr-2">
-                    <label for="role" class="form-control-label">PENMAS</label>
-                    <select class="form-control" id="ep3" name="penmas">
-                      <option value="1" class="text-success font-weight-bold">LULUS</option>
-                      <option value="0" class="text-danger font-weight-bold">TIDAK LULUS</option>
+                  <div class="col-7 p-0 pr-2">
+                    <label for="role" class="form-control-label">Status</label>
+                    <select class="form-control" id="esta" name="status">
+                      <option value="1">Verified</option>
+                      <option value="0">Unverified</option>
                     </select>
                   </div>
                 </div>
@@ -196,12 +199,12 @@
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="dt">Hapus User</h5>
+            <h5 class="modal-title" id="dt">Hapus Kegiatan</h5>
           </div>
           <form method="post" enctype="multipart/form-data">
             <div class="modal-body">
               <div class="form-group m-0">
-                <label id="dd" class="form-control-label">Apakah anda yakin ingin menghapus user ini?</label>
+                <label id="dd" class="form-control-label">Apakah anda yakin ingin kegiatan ini?</label>
                 <input type="hidden" class="d-none" class="form-control" id="di" name="id" value="" required>
               </div>
             </div>
@@ -216,16 +219,16 @@
     <script type="text/javascript">
       function edit(id){
         var mydata = $("#"+id).text().split(",");
-        $("#ei").val(id);
-        $("#ep1").val(mydata[0]);
-        $("#eb1").val(mydata[1]);
-        $("#ep2").val(mydata[2]);
-        $("#ep3").val(mydata[3]);
-        $("#et").text("Edit data "+$("#n"+id).text());
+        $("#eid").val(id);
+        $("#enam").val($("#nm"+id).text());
+        $("#ejab").val($("#jb"+id).text());
+        $("#ejen").val($("#jn"+id).text());
+        $("#enil").val($("#ni"+id).text());
+        $("#esta").val($("#st"+id).text());
       }
       function hapus(id){
         $("#di").val(id);
-        $("#dt").text("Hapus "+$("#n"+id).text());
-        $("#dd").text('Apakah anda yakin ingin menghapus "'+$("#n"+id).text()+'"?');
+        //$("#dt").text("Hapus "+$("#n"+id).text());
+        //$("#dd").text('Apakah anda yakin ingin menghapus "'+$("#n"+id).text()+'"?');
       }
     </script>

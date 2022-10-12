@@ -20,7 +20,7 @@
             </li>
             <li class="nav-item">
               <a class="nav-link <?php if($page==='probinmaba') {echo 'bg-light';} ?>" href="probinmaba">
-                <i class="fa fa-users text-default"></i>
+                <i class="fa fa-book text-default"></i>
                 <span class="nav-link-text">Data SKK Probinmaba</span>
               </a>
             </li>
@@ -28,6 +28,12 @@
               <a class="nav-link <?php if($page==='kegiatan') {echo 'bg-light';} ?>" href="kegiatan">
                 <i class="fa fa-trophy text-default"></i>
                 <span class="nav-link-text">Data SKK Kegiatan</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link <?php if($page==='mahasiswa') {echo 'bg-light';} ?>" href="mahasiswa">
+                <i class="fa fa-users text-default"></i>
+                <span class="nav-link-text">Data Mahasiswa</span>
               </a>
             </li>
             <?php if($role=="superadmin"){ ?>
